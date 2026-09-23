@@ -12,7 +12,10 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter create . --project-name phonepad_controller --platforms android
+      - run: |
+          cp lib/main.dart /tmp/my_code.dart
+          flutter create. --project-name phonepad_controller --platforms android
+          cp /tmp/my_code.dart lib/main.dart
       - run: flutter pub get
       - run: flutter build apk --debug
       - uses: actions/upload-artifact@v4
